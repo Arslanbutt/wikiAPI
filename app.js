@@ -36,6 +36,26 @@ app.get('/articles',function(req,res){
   });
 });
 
+
+app.post('/articles',function(req,res){
+  const title = req.body.title;
+  const content = req.body.content;
+
+  const article = new Article({
+    title : title,
+    content : content
+  });
+
+  article.save(function(err){
+    if(!err){
+      res.send("Success");
+    }else{
+      res.send(err);
+    }
+  });
+
+});
+
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
